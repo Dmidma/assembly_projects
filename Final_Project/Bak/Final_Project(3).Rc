@@ -1,0 +1,139 @@
+#define IDM_DS 2 
+#define IDM_BS 3 
+#define IDM_EXIT 4
+#define IDM_ABOUT 5
+#define IDM_ENC 6
+#define IDM_DEC 7
+#define IDM_INFCR 8
+
+; Images
+#define IDB_H 111
+IDB_H BITMAP "h.bmp"
+#define IDB_E 112
+IDB_E BITMAP "e.bmp"
+#define IDB_L 113
+IDB_L BITMAP "l.bmp"
+#define IDB_LL 114
+IDB_LL BITMAP "l2.bmp"
+#define IDB_O 115
+IDB_O BITMAP "o.bmp"
+#define IDB_D 116
+IDB_D BITMAP "d.bmp"
+#define IDB_M 117
+IDB_M BITMAP "m.bmp"
+#define IDB_I 118
+IDB_I BITMAP "i.bmp"
+#define IDB_DD 119
+IDB_DD BITMAP "d2.bmp"
+#define IDB_MM 120
+IDB_MM BITMAP "m2.bmp"
+#define IDB_A 121
+IDB_A BITMAP "a.bmp"
+#define IDB_FR 122
+IDB_FR BITMAP "fr.bmp"
+
+
+
+
+// constants for dialog box
+
+#define IDC_STATIC                      				-1
+#define IDC_VAR1                                       3100
+#define IDC_VAR2                                       3200
+#define IDC_RFIELD                                 	   3010
+#define IDC_ADD                                        3001
+#define IDC_SUB										   3002
+#define IDC_EXIT                                       3003
+#define IDC_CHAN									   3004
+#define DS_CENTER           0x0800L
+#define DS_CENTER           0x0800L
+#define WS_MINIMIZEBOX      0x00020000L
+#define WS_SYSMENU          0x00080000L
+#define WS_VISIBLE          0x10000000L
+#define WS_OVERLAPPED       0x00000000L
+#define DS_MODALFRAME       0x80L
+#define DS_3DLOOK           0x0004L
+#define WS_CAPTION          0xC00000L
+#define ES_AUTOHSCROLL      0x80L
+#define ES_LEFT             0
+
+FirstMenu MENU 
+{ 
+ POPUP "Numbers" 
+        { 
+        	MENUITEM "&Decimal Sum", IDM_DS 
+         	MENUITEM "&Binary Sum", IDM_BS 
+         	MENUITEM SEPARATOR 
+         	MENUITEM "Exit",IDM_EXIT 
+        } 
+ POPUP "Crypt"
+ 		{	
+ 			MENUITEM "INFO", IDM_INFCR
+ 			MENUITEM SEPARATOR
+ 			MENUITEM "Encryption", IDM_ENC
+ 			MENUITEM "Decryption", IDM_DEC
+ 		}
+ MENUITEM "About", IDM_ABOUT
+}
+
+
+
+DecimalDialog DIALOG 10, 10, 163, 110
+STYLE 0x0004 | DS_CENTER | WS_CAPTION | WS_MINIMIZEBOX |
+WS_SYSMENU | WS_VISIBLE | WS_OVERLAPPED | DS_MODALFRAME | DS_3DLOOK
+CAPTION "Decimal Sum:"
+BEGIN
+	; x, y, width, height
+	GROUPBOX        "Enter Two Decimal Values:", IDC_STATIC, 7, 7, 150, 67
+    LTEXT           "Var1:", IDC_STATIC, 15, 22, 39, 8
+    LTEXT           "Var2:", IDC_STATIC, 15, 52, 39, 8
+    LTEXT           "Result:", IDC_STATIC, 15, 82, 39, 8
+    EDITTEXT         IDC_VAR1,   50, 22, 50, 13, ES_AUTOHSCROLL | ES_LEFT
+    EDITTEXT         IDC_VAR2,   50, 52, 50, 13, ES_AUTOHSCROLL | ES_LEFT
+    EDITTEXT         IDC_RFIELD,   50, 82, 50, 13, ES_AUTOHSCROLL | DS_CENTER
+    PUSHBUTTON   	"ADD", IDC_ADD, 120, 25, 26, 13
+    PUSHBUTTON   	"SUB", IDC_SUB, 120, 50, 26, 13
+    PUSHBUTTON      "Exit", IDC_EXIT, 131, 87, 26, 13
+    
+END
+
+
+
+EncryptionDialog DIALOG 3, 3, 210, 210
+STYLE 0x0004 | DS_CENTER | WS_CAPTION | WS_MINIMIZEBOX |
+WS_SYSMENU | WS_VISIBLE | WS_OVERLAPPED | DS_MODALFRAME | DS_3DLOOK
+CAPTION "Ceaser Encryption"
+BEGIN
+	; x, y, width, height
+	GROUPBOX        "Encryption", IDC_STATIC, 7, 7, 198, 197
+    LTEXT           "Msg:", IDC_STATIC, 15, 22, 39, 8
+    LTEXT           "Key:", IDC_STATIC, 15, 102, 39, 8
+    LTEXT           "Crypted Msg:", IDC_STATIC, 15, 132, 39, 20
+    EDITTEXT         IDC_VAR1,   50, 22, 100, 63, ES_AUTOHSCROLL | ES_LEFT
+    EDITTEXT         IDC_VAR2,   85, 102, 25, 13, ES_AUTOHSCROLL | ES_LEFT
+    EDITTEXT         IDC_RFIELD,   50, 132, 100, 63, ES_AUTOHSCROLL | DS_CENTER
+    PUSHBUTTON   	"Change", IDC_CHAN, 145, 102, 30, 13
+    PUSHBUTTON      "Exit", IDC_EXIT, 170, 185, 26, 13
+    
+END
+
+DecryptionDialog DIALOG 3, 3, 210, 210
+STYLE 0x0004 | DS_CENTER | WS_CAPTION | WS_MINIMIZEBOX |
+WS_SYSMENU | WS_VISIBLE | WS_OVERLAPPED | DS_MODALFRAME | DS_3DLOOK
+CAPTION "Ceaser Decryption"
+BEGIN
+	; x, y, width, height
+	GROUPBOX        "Decryption", IDC_STATIC, 7, 7, 198, 197
+    LTEXT           "Crypted Msg:", IDC_STATIC, 15, 22, 39, 8
+    LTEXT           "Key:", IDC_STATIC, 15, 102, 39, 8
+    LTEXT           "Crypted Msg:", IDC_STATIC, 15, 132, 39, 20
+    EDITTEXT         IDC_VAR1,   50, 22, 100, 63, ES_AUTOHSCROLL | ES_LEFT
+    EDITTEXT         IDC_VAR2,   85, 102, 25, 13, ES_AUTOHSCROLL | ES_LEFT
+    EDITTEXT         IDC_RFIELD,   50, 132, 100, 63, ES_AUTOHSCROLL | DS_CENTER
+    PUSHBUTTON   	"Change", IDC_CHAN, 145, 102, 30, 13
+    PUSHBUTTON      "Exit", IDC_EXIT, 170, 185, 26, 13
+    
+END
+
+
+ 
